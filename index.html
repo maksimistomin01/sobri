@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sobri — База знаний</title>
+<meta name="description" content="Инструкции и настройки Sobri">
+<style>
+:root{
+  --bg:#f5f7fb;--surface:#fff;--text:#101521;--muted:#6e7890;--line:#e7ebf3;
+  --blue:#23a8f4;--iris:#7658ff;--shadow:0 18px 60px rgba(31,45,75,.08);
+  --sidebar:245px;--max:1220px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+button,input{font:inherit}a{color:inherit;text-decoration:none}
+.shell{min-height:100vh;display:grid;grid-template-columns:var(--sidebar) 1fr}
+.sidebar{position:sticky;top:0;height:100vh;padding:26px 22px;border-right:1px solid var(--line);background:rgba(255,255,255,.8);backdrop-filter:blur(18px);display:flex;flex-direction:column;gap:20px}
+.brand{display:flex;flex-direction:column;gap:2px;padding:0 8px 8px}
+.wordmark{font-size:39px;line-height:1;font-weight:800;letter-spacing:-.07em}.wordmark span{color:var(--blue)}
+.brand small{font-size:15px;color:#7f89a0;font-weight:650}
+.side-nav{display:flex;flex-direction:column;gap:6px}
+.side-link{border:0;background:transparent;width:100%;display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:13px;color:#3f4a62;font-weight:650;text-align:left;cursor:pointer}
+.side-link:hover,.side-link.active{background:linear-gradient(90deg,#e3f4ff,#eef6ff);color:#138ee4}
+.side-ico{width:22px;height:22px;display:grid;place-items:center;color:var(--blue);font-size:18px}
+.support{margin-top:auto;background:linear-gradient(145deg,#f0f6ff,#fff);border:1px solid var(--line);border-radius:20px;padding:18px}
+.support-badge{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--iris));display:grid;place-items:center;color:#fff;font-size:22px;margin-bottom:12px;box-shadow:0 10px 24px rgba(82,117,255,.25)}
+.support b{display:block;margin-bottom:5px}.support p{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+.support button{width:100%;border:0;border-radius:12px;background:linear-gradient(90deg,var(--blue),#258cff);color:#fff;padding:11px;font-weight:750;cursor:pointer}
+.main{min-width:0}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(245,247,251,.84);backdrop-filter:blur(16px);border-bottom:1px solid rgba(231,235,243,.8)}
+.topbar-inner{max-width:var(--max);margin:0 auto;padding:14px 26px;display:flex;align-items:center;gap:14px}
+.search{flex:1;max-width:560px;position:relative}
+.search input{width:100%;height:44px;border:1px solid var(--line);border-radius:13px;background:#eef3fb;padding:0 44px 0 42px;outline:none;color:var(--text)}
+.search input:focus{background:#fff;border-color:#b8d9f6;box-shadow:0 0 0 4px rgba(35,168,244,.09)}
+.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#75829a}
+.search-key{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;color:#8490a8;border:1px solid #cfd7e5;border-radius:7px;padding:3px 7px;background:#f7f9fd}
+.top-actions{margin-left:auto;display:flex;gap:10px}
+.icon-btn,.app-btn{border:1px solid var(--line);background:#fff;border-radius:13px;height:44px;cursor:pointer}
+.icon-btn{width:44px}.app-btn{padding:0 17px;font-weight:750}
+.content{max-width:var(--max);margin:0 auto;padding:24px 26px 56px}
+.hero{min-height:340px;border-radius:28px;overflow:hidden;background:
+radial-gradient(circle at 70% 20%,rgba(118,88,255,.26),transparent 30%),
+radial-gradient(circle at 36% 80%,rgba(35,168,244,.18),transparent 35%),
+linear-gradient(135deg,#f7fbff,#eaf5ff 56%,#eef0ff);
+position:relative;padding:38px 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;box-shadow:var(--shadow)}
+.hero-copy{position:relative;z-index:2}.kicker{font-size:12px;letter-spacing:.14em;color:#119ced;font-weight:850;text-transform:uppercase;margin-bottom:15px}
+.hero h1{font-size:52px;line-height:1.02;letter-spacing:-.055em;margin:0 0 16px;max-width:650px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#425fe8,var(--iris));-webkit-background-clip:text;color:transparent}
+.hero p{max-width:590px;color:#657189;font-size:17px;line-height:1.55;margin:0}
+.stats{display:flex;margin-top:28px}.stat{padding:0 28px;border-right:1px solid #dce5f2}.stat:first-child{padding-left:0}.stat:last-child{border-right:0}
+.stat strong{display:block;font-size:27px;letter-spacing:-.03em}.stat span{font-size:11px;color:#8190a8;text-transform:uppercase;letter-spacing:.04em}
+.phone-zone{position:relative;display:grid;place-items:center}
+.phone{width:230px;height:410px;border-radius:38px;background:#0f1420;border:8px solid #1d2230;box-shadow:0 28px 70px rgba(23,31,60,.28);transform:rotate(6deg);padding:24px 16px 16px;color:#fff}
+.phone-top{font-size:23px;font-weight:800;letter-spacing:-.05em;margin-bottom:24px}.phone-row{display:flex;align-items:center;gap:10px;padding:12px 8px;border-top:1px solid rgba(255,255,255,.08);font-size:13px}
+.phone-dot{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#1eb6ff,#6b5eff)}
+.float-card{position:absolute;right:0;bottom:22px;width:155px;border:1px solid rgba(255,255,255,.7);background:rgba(255,255,255,.84);backdrop-filter:blur(12px);border-radius:18px;padding:16px;box-shadow:0 16px 36px rgba(66,74,130,.14)}
+.float-card strong{display:block;font-size:22px;margin-top:8px}.float-card span{font-size:12px;color:var(--muted)}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:30px 0 16px}.section-head h2{font-size:25px;letter-spacing:-.03em;margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:17px 18px;cursor:pointer;transition:.2s;min-height:132px;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#d7e2f0}.card-top{display:flex;align-items:flex-start;gap:13px}
+.card-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#e4f6ff,#d8edff);color:#168fdf;display:grid;place-items:center;font-size:23px;flex:0 0 auto}
+.card:nth-child(3) .card-icon{background:linear-gradient(135deg,#eee9ff,#e5dcff);color:var(--iris)}
+.card:nth-child(4) .card-icon{background:linear-gradient(135deg,#e7fbe9,#d8f7df);color:#18a83e}
+.card:nth-child(5) .card-icon{background:linear-gradient(135deg,#ffe7f2,#ffe2ec);color:#ef4186}
+.card:nth-child(6) .card-icon{background:linear-gradient(135deg,#fff0e7,#ffe4d5);color:#ff6c24}
+.card:nth-child(7) .card-icon{background:linear-gradient(135deg,#edf0f8,#e7ebf3);color:#52617b}
+.card h3{font-size:16px;margin:3px 0 5px}.card p{font-size:13px;line-height:1.45;color:var(--muted);margin:0}
+.card-meta{margin-top:auto;padding-top:12px;color:#8792a9;font-size:12px}.card-arrow{margin-left:auto;color:#6c7892;font-size:20px}
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}.listbox{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.listbox h3{margin:0 0 12px;font-size:18px}
+.article-link{display:flex;align-items:center;gap:11px;padding:12px;border-radius:12px;cursor:pointer}.article-link:hover{background:#f5f8fd}
+.article-num{width:28px;height:28px;border-radius:8px;background:#e8f5ff;color:#168fdf;display:grid;place-items:center;font-size:12px;font-weight:800;flex:0 0 auto}.article-link span{font-size:13px;line-height:1.35}.article-link i{font-style:normal;margin-left:auto;color:#8490a8}
+.category-page,.article-page{display:none}.page-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}.back{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 13px;cursor:pointer}
+.category-banner{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;margin-bottom:16px}.category-banner h1,.article-title{font-size:38px;letter-spacing:-.045em;margin:0 0 8px}.category-banner p{color:var(--muted);margin:0}
+.warning{margin-top:18px;background:#fff8e8;border:1px solid #f1deb1;border-radius:16px;padding:15px 17px;color:#6c5522;font-size:14px;line-height:1.5}
+.article-list{background:#fff;border:1px solid var(--line);border-radius:22px;padding:10px}.article-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:13px;cursor:pointer}.article-row:hover{background:#f6f9fd}
+.doc-ico{width:32px;height:32px;border-radius:10px;background:#edf5ff;color:#168fdf;display:grid;place-items:center;flex:0 0 auto}
+.article-layout{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:22px}.article-body{background:#fff;border:1px solid var(--line);border-radius:24px;padding:34px}
+.breadcrumbs{font-size:12px;color:#8a95a9;margin-bottom:14px}.article-title{font-size:42px}.article-lead{font-size:16px;color:var(--muted);line-height:1.6;margin:0 0 26px}
+.demo-note{border:1px dashed #ccd6e6;background:#fafcff;border-radius:16px;padding:16px;color:#6d7890;font-size:13px;margin:18px 0}
+.step{padding:24px 0;border-top:1px solid var(--line)}.step:first-of-type{border-top:0}.step-label{font-size:12px;color:#138ee4;font-weight:850;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.step h2{margin:0 0 8px;font-size:24px}.step p{margin:0;color:#59657b;line-height:1.6}
+.screenshot{margin-top:16px;border:1px solid var(--line);border-radius:18px;background:#f2f5fa;overflow:hidden;cursor:zoom-in}.screenshot img{display:block;width:100%;height:auto}
+.placeholder{min-height:300px;display:grid;place-items:center;text-align:center;color:#8a95a8;padding:24px;background:linear-gradient(135deg,#f7f9fc,#edf2f8)}.placeholder strong{display:block;color:#647086;margin-bottom:5px}
+.toc{position:sticky;top:84px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.toc b{font-size:13px}.toc a{display:block;margin-top:10px;font-size:12px;color:#748097}
+.search-results{position:absolute;top:50px;left:0;right:0;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:14px;padding:8px;display:none;max-height:420px;overflow:auto}
+.search-result{padding:11px 12px;border-radius:10px;cursor:pointer}.search-result:hover{background:#f4f8fd}.search-result b{display:block;font-size:13px}.search-result small{color:#8792a7}
+.overlay{position:fixed;inset:0;background:rgba(8,12,20,.72);z-index:100;display:none;place-items:center;padding:24px}.overlay.open{display:grid}.overlay img{max-width:min(1400px,96vw);max-height:92vh;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.overlay-close{position:absolute;top:20px;right:24px;width:42px;height:42px;border:0;border-radius:50%;background:#fff;font-size:22px;cursor:pointer}
+body.dark{--bg:#0f131c;--surface:#161b26;--text:#f3f6fb;--muted:#9aa6bb;--line:#2a3140}
+body.dark .sidebar,body.dark .topbar{background:rgba(15,19,28,.86)}
+body.dark .card,body.dark .listbox,body.dark .category-banner,body.dark .article-list,body.dark .article-body,body.dark .toc,body.dark .back,body.dark .icon-btn,body.dark .app-btn{background:#171c27}
+body.dark .hero{background:radial-gradient(circle at 70% 20%,rgba(118,88,255,.28),transparent 30%),linear-gradient(135deg,#141b28,#151b26)}
+body.dark .search input{background:#171d29;color:#fff}.dark .article-link:hover,.dark .article-row:hover{background:#202735}
+@media(max-width:1000px){.shell{grid-template-columns:1fr}.sidebar{display:none}.hero{grid-template-columns:1fr}.phone-zone{display:none}.cards{grid-template-columns:1fr 1fr}.article-layout{grid-template-columns:1fr}.toc{display:none}}
+@media(max-width:650px){.topbar-inner,.content{padding-left:14px;padding-right:14px}.app-btn{display:none}.hero{padding:28px 22px;min-height:auto}.hero h1{font-size:38px}.stats{overflow:auto}.stat{padding:0 16px}.cards,.lists{grid-template-columns:1fr}.article-body{padding:24px 19px}.article-title{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><div class="wordmark">sobri<span>.</span></div><small>База знаний</small></div>
+  <nav class="side-nav" id="sideNav"><button class="side-link active" data-route="home"><span class="side-ico">⌂</span>Главная</button></nav>
+  <div class="support"><div class="support-badge">◇</div><b>Нужна помощь?</b><p>Если не нашли ответ — напишите нам, мы поможем.</p><button type="button">Написать в поддержку</button></div>
+</aside>
+
+<div class="main">
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="search"><span class="search-icon">⌕</span><input id="searchInput" placeholder="Поиск по документации..." autocomplete="off"><span class="search-key">⌘ K</span><div class="search-results" id="searchResults"></div></div>
+    <div class="top-actions"><button class="icon-btn" id="themeBtn" title="Сменить тему">◐</button><button class="app-btn" type="button">Перейти в приложение ↗</button></div>
+  </div>
+</header>
+
+<main class="content">
+<section id="homePage">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Документация · Sobri</div>
+      <h1>Все инструкции <em>в одном месте</em></h1>
+      <p>Инструкции и настройки для работы с Sobri. Быстро находите нужный раздел и переходите к конкретной инструкции.</p>
+      <div class="stats">
+        <div class="stat"><strong>7</strong><span>разделов</span></div>
+        <div class="stat"><strong>46</strong><span>инструкций</span></div>
+        <div class="stat"><strong>24/7</strong><span>доступ</span></div>
+      </div>
+    </div>
+    <div class="phone-zone" aria-hidden="true">
+      <div class="phone">
+        <div class="phone-top">Sobri</div>
+        <div class="phone-row"><span class="phone-dot">▦</span>Каталог</div>
+        <div class="phone-row"><span class="phone-dot">▣</span>Заказы</div>
+        <div class="phone-row"><span class="phone-dot">≡</span>Сметы</div>
+        <div class="phone-row"><span class="phone-dot">⌁</span>Замеры</div>
+        <div class="phone-row"><span class="phone-dot">⌂</span>Объекты</div>
+      </div>
+      <div class="float-card"><span>База знаний</span><strong>46</strong><span>инструкций</span></div>
+    </div>
+  </section>
+
+  <div class="section-head"><h2>Разделы документации</h2></div>
+  <div class="cards" id="categoryCards"></div>
+
+  <div class="lists">
+    <section class="listbox"><h3>Быстрый доступ</h3><div id="quickList"></div></section>
+    <section class="listbox"><h3>Все разделы</h3><div id="sectionList"></div></section>
+  </div>
+</section>
+
+<section id="categoryPage" class="category-page"></section>
+<section id="articlePage" class="article-page"></section>
+</main>
+</div>
+</div>
+
+<div class="overlay" id="imageOverlay"><button class="overlay-close" id="overlayClose">×</button><img id="overlayImage" alt=""></div>
+
+<script>
+const CATEGORIES = [{"id": "categories", "name": "Категории", "icon": "▱", "description": "Настройка категорий и сортировка товаров", "articles": ["Как отображать один и тот же товар в нескольких категориях", "Как сортировать товары в категории по позиции"]}, {"id": "product", "name": "Товар", "icon": "◇", "description": "Товары, свойства, вариации, цены и остатки", "warning": "Нельзя на сайте удалять товар выгруженный из 1с. Иначе 1с будет постоянно пытаться обновить товар которого уже нет и выдавать ошибку. Если товар уже не актуален нужно его на сайте выкл. или скрыть.", "articles": ["Начало настройки", "Массовое редактирование товаров", "Свойства товаров (поля и настройки)", "Вариации товаров", "Видео галерея товара", "Действия при отсутствии товара в наличии", "Дробный остаток", "Как добавить новую папку с товарами для обмена", "Как задать максимальное количество экземпляров товара в заказе", "Как задать минимальное количество экземпляров товара в заказе", "Как задать оптовые цены для товара", "Как поменять определенное свойство у всех товаров", "Как предоставить покупателю выбор количества товара в виде нескольких определённых вариантов", "Как прикрепить файл к товару", "Как создать несколько разновидностей одного товара", "Возврат товаров", "Цена за единицу", "Как добавить новую папку с товарами", "Налог НДС"]}, {"id": "1c", "name": "Обмен и настройки 1с", "icon": "↻", "description": "Настройка обмена, заказов и покупателей в 1с", "articles": ["Настройка наменклатуры и контрагента в 1с", "Настройка списка заказов в 1с", "Привязка покупателя к 1с"]}, {"id": "warehouses", "name": "Склады", "icon": "⌂", "description": "Описания и настройки складов", "articles": ["Описания и настройки"]}, {"id": "blocks", "name": "Блоки", "icon": "▦", "description": "Настройка блоков и главной страницы", "articles": ["Редактирование блоков", "Блок товаров в карточке товара", "Настройка макета главной страницы", "Как добавить баннер на главную", "Как добавить ссылку для баннера", "Похожие товары (аналоги)"]}, {"id": "marketing", "name": "Маркетинг", "icon": "◁", "description": "Промоакции, баннеры, купоны и аналитика", "articles": ["Размеры баннеров", "Как добавить баннер на главную", "Центр сообщений", "Как создать страницу", "Промоакции и скидки", "Как создать бонусный купон", "Как автоматически генерировать купоны", "Программа лояльности", "Цена за единицу", "Яндекс.Метрика", "Как добавить ссылку для баннера", "Похожие товары (аналоги)", "QR-коды товаров", "Как подключить уведомления в MAX"]}, {"id": "settings", "name": "Настройки", "icon": "⚙", "description": "Пользователи и общие настройки", "articles": ["Группы пользователей"]}];
+
+const sideNav=document.getElementById('sideNav'),categoryCards=document.getElementById('categoryCards'),
+quickList=document.getElementById('quickList'),sectionList=document.getElementById('sectionList'),
+homePage=document.getElementById('homePage'),categoryPage=document.getElementById('categoryPage'),
+articlePage=document.getElementById('articlePage'),searchInput=document.getElementById('searchInput'),
+searchResults=document.getElementById('searchResults');
+
+function slugify(s){return s.toLowerCase().replace(/ё/g,'е').replace(/[^a-zа-я0-9]+/g,'-').replace(/(^-|-$)/g,'')}
+function articleHref(cat,title){return '#article/'+cat.id+'/'+encodeURIComponent(title)}
+function plural(n){const a=n%10,b=n%100;if(a===1&&b!==11)return'инструкция';if(a>=2&&a<=4&&!(b>=12&&b<=14))return'инструкции';return'инструкций'}
+
+function buildUI(){
+  CATEGORIES.forEach(cat=>{
+    const btn=document.createElement('button');
+    btn.className='side-link';btn.dataset.route=cat.id;
+    btn.innerHTML=`<span class="side-ico">${cat.icon}</span>${cat.name}`;
+    btn.onclick=()=>location.hash='#category/'+cat.id;sideNav.appendChild(btn);
+
+    const card=document.createElement('article');card.className='card';
+    card.innerHTML=`<div class="card-top"><div class="card-icon">${cat.icon}</div><div><h3>${cat.name}</h3><p>${cat.description}</p></div><div class="card-arrow">→</div></div><div class="card-meta">${cat.articles.length} ${plural(cat.articles.length)}</div>`;
+    card.onclick=()=>location.hash='#category/'+cat.id;categoryCards.appendChild(card);
+  });
+
+  const quick=[['product','Начало настройки'],['blocks','Как добавить баннер на главную'],['1c','Настройка списка заказов в 1с'],['marketing','Промоакции и скидки'],['settings','Группы пользователей']];
+  quick.forEach((x,i)=>{const cat=CATEGORIES.find(c=>c.id===x[0]);quickList.insertAdjacentHTML('beforeend',`<div class="article-link" onclick="location.hash='${articleHref(cat,x[1])}'"><span class="article-num">${String(i+1).padStart(2,'0')}</span><span>${x[1]}</span><i>›</i></div>`)});
+  CATEGORIES.forEach(cat=>sectionList.insertAdjacentHTML('beforeend',`<div class="article-link" onclick="location.hash='#category/${cat.id}'"><span class="article-num">${cat.icon}</span><span>${cat.name}</span><i>${cat.articles.length}</i></div>`));
+}
+
+function setActive(id){document.querySelectorAll('.side-link').forEach(x=>x.classList.toggle('active',x.dataset.route===id))}
+function showHome(){homePage.style.display='block';categoryPage.style.display='none';articlePage.style.display='none';setActive('home')}
+function showCategory(id){
+  const cat=CATEGORIES.find(c=>c.id===id);if(!cat)return showHome();
+  homePage.style.display='none';articlePage.style.display='none';categoryPage.style.display='block';setActive(cat.id);
+  const warning=cat.warning?`<div class="warning"><b>Важно:</b> ${cat.warning}</div>`:'';
+  const rows=cat.articles.map(t=>`<div class="article-row" onclick="location.hash='${articleHref(cat,t)}'"><div class="doc-ico">▤</div><div>${t}</div><div style="margin-left:auto;color:#8290a8">→</div></div>`).join('');
+  categoryPage.innerHTML=`<div class="page-head"><button class="back" onclick="location.hash='#home'">← Главная</button></div><section class="category-banner"><div class="kicker">Раздел документации</div><h1>${cat.name}</h1><p>${cat.description} · ${cat.articles.length} ${plural(cat.articles.length)}</p>${warning}</section><div class="article-list">${rows}</div>`;
+}
+function showArticle(catId,title){
+  const cat=CATEGORIES.find(c=>c.id===catId);if(!cat||!cat.articles.includes(title))return showHome();
+  homePage.style.display='none';categoryPage.style.display='none';articlePage.style.display='block';setActive(cat.id);
+  const safeFile=slugify(title)||'screenshot';
+  const warning=cat.warning?`<div class="warning"><b>Важно для раздела «Товар»:</b> ${cat.warning}</div>`:'';
+  articlePage.innerHTML=`<div class="page-head"><button class="back" onclick="location.hash='#category/${cat.id}'">← ${cat.name}</button></div>
+  <div class="article-layout">
+    <article class="article-body">
+      <div class="breadcrumbs">База знаний / ${cat.name}</div>
+      <h1 class="article-title">${title}</h1>
+      <p class="article-lead">Страница подготовлена под перенос готового текста инструкции, скриншотов и видео.</p>
+      ${warning}
+      <div class="demo-note">Ниже — шаблон отображения материала. Текст шагов заменяется на ваш готовый текст, а изображения просто кладутся в папку <b>images</b>.</div>
+      <section class="step" id="step-1"><div class="step-label">Шаг 01</div><h2>Заголовок шага</h2><p>Здесь будет текст соответствующего шага из исходной инструкции.</p><div class="screenshot"><div class="placeholder"><div><strong>Скриншот шага</strong>images/${safeFile}-01.png<br>По клику изображение откроется крупно</div></div></div></section>
+      <section class="step" id="step-2"><div class="step-label">Шаг 02</div><h2>Следующее действие</h2><p>Картинки не идут отдельной простынёй: каждый скрин располагается рядом с тем шагом, который он объясняет.</p><div class="screenshot"><div class="placeholder"><div><strong>Следующий скриншот</strong>images/${safeFile}-02.png</div></div></div></section>
+    </article>
+    <aside class="toc"><b>На этой странице</b><a href="#step-1">Шаг 01</a><a href="#step-2">Шаг 02</a></aside>
+  </div>`;
+}
+function route(){
+  const h=location.hash||'#home';
+  if(h.startsWith('#category/'))showCategory(h.split('/')[1]);
+  else if(h.startsWith('#article/')){const p=h.split('/');showArticle(p[1],decodeURIComponent(p.slice(2).join('/')))}
+  else showHome();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function search(q){
+  const term=q.trim().toLowerCase();if(!term){searchResults.style.display='none';return}
+  const items=[];CATEGORIES.forEach(cat=>{if(cat.name.toLowerCase().includes(term))items.push({type:'category',cat});cat.articles.forEach(title=>{if(title.toLowerCase().includes(term))items.push({type:'article',cat,title})})});
+  searchResults.innerHTML=items.length?items.slice(0,12).map(item=>item.type==='category'?`<div class="search-result" onclick="location.hash='#category/${item.cat.id}';hideSearch()"><b>${item.cat.name}</b><small>Раздел · ${item.cat.articles.length} ${plural(item.cat.articles.length)}</small></div>`:`<div class="search-result" onclick="location.hash='${articleHref(item.cat,item.title)}';hideSearch()"><b>${item.title}</b><small>${item.cat.name}</small></div>`).join(''):`<div class="search-result"><small>Ничего не найдено</small></div>`;
+  searchResults.style.display='block';
+}
+function hideSearch(){searchResults.style.display='none';searchInput.blur()}
+searchInput.addEventListener('input',e=>search(e.target.value));document.addEventListener('click',e=>{if(!e.target.closest('.search'))searchResults.style.display='none'});
+document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();searchInput.focus()}if(e.key==='Escape')hideSearch()});
+document.getElementById('themeBtn').onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('sobri-theme',document.body.classList.contains('dark')?'dark':'light')};
+if(localStorage.getItem('sobri-theme')==='dark')document.body.classList.add('dark');
+buildUI();window.addEventListener('hashchange',route);route();
+</script>
+</body></html>
