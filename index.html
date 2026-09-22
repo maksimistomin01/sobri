@@ -17,8 +17,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:"Manrope",syste
 button,input{font:inherit}a{text-decoration:none;color:inherit}
 .layout{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh}
 .sidebar{position:sticky;top:0;height:100vh;padding:26px 20px;border-right:1px solid var(--line);background:rgba(255,255,255,.88);backdrop-filter:blur(18px);display:flex;flex-direction:column}
-.logo{font-size:39px;line-height:1;font-weight:800;letter-spacing:-.075em}.logo i{font-style:normal;color:var(--blue)}
-.logo-sub{margin:5px 0 25px;color:#7c879e;font-weight:650}
+.brand{display:flex;flex-direction:column;align-items:flex-start}.logo{display:block;line-height:0;margin:0}.logo img{display:block;width:146px;height:auto;border-radius:18px}.logo-sub{margin:10px 0 25px;color:#7c879e;font-weight:650}
 .nav{display:flex;flex-direction:column;gap:5px}.nav-btn{width:100%;border:0;background:transparent;border-radius:13px;padding:11px 12px;text-align:left;display:flex;align-items:center;gap:11px;cursor:pointer;color:#42506a;font-weight:650}
 .nav-btn:hover,.nav-btn.active{background:linear-gradient(90deg,#e4f5ff,#f1f7ff);color:#108edf}.nav-btn.disabled{opacity:.48}
 .nav-ico{width:22px;display:grid;place-items:center;color:#169eea;font-size:18px}
@@ -72,7 +71,7 @@ body.dark .article-row:hover{background:#202735}body.dark .card p,body.dark .art
 <body>
 <div class="layout">
 <aside class="sidebar">
- <div class="logo">sobri<i>.</i></div><div class="logo-sub">База знаний</div>
+ <div class="brand"><div class="logo"><img src="images/sobri-logo.jpg" alt="Sobri"></div><div class="logo-sub">База знаний</div></div>
  <nav class="nav" id="nav"><button class="nav-btn active" data-route="home"><span class="nav-ico">⌂</span>Главная</button></nav>
  <div class="help"><strong>Нужна помощь?</strong><p>Если не нашли ответ, обратитесь к своему менеджеру Sobri.</p></div>
 </aside>
